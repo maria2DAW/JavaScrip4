@@ -2,6 +2,8 @@
     alert();
 };*/
 
+var unaVez, muchasVeces;
+
 function reloj()
 {
     var tiempo = document.querySelector("#tiempo");    
@@ -13,22 +15,28 @@ function ejecutarIntervalos(evento)
     //alert(evento.target.id);
     //console.log(evento);
     
-    var queBoton = evento.target;
-    var unaVez, muchasVeces;
+    var queBoton = evento.target.id;
+    
+    /*setTimeout y setInterval se guardan en variables (pueden ser ejecutados
+     * sin la necesidad de guardarlos previamente en variables) porque clearTimeout y clearInterval
+     * necesitan un objeto que contenga éstos respectivamente.*/
     
     switch(queBoton)
     {
         case "set-timeout":
-            setTimeout("reloj", 2000);
+            unaVez = setTimeout("reloj()", 2000); //setTimeout sólo se ejectuta una vez
             break;
             
         case "clear-timeout":
+            clearTimeout(unaVez);
             break;
         
         case "set-interval":
+            muchasVeces = setInterval("reloj()", 1000); //setInterval se ejectuta cada determinado tiempo
             break;
             
         case "clear-interval":
+            clearInterval(muchasVeces);
             break;    
     }
 }
